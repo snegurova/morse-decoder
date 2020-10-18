@@ -40,10 +40,10 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     return expr.split(/(.{10})/).filter(it => it)
-    .map(it => it.replace(/^0+/, ''))
-    .map(it => it.replace(/(10)/g, '.'))
-    .map(it => it.replace(/(11)/g, '-'))
-    .map(it => MORSE_TABLE[it])
+    .map(it => {
+      it = it.replace(/^0+/, '').replace(/(10)/g, '.').replace(/(11)/g, '-');
+      return MORSE_TABLE[it];
+    })
     .join('');
 }
 
